@@ -59,7 +59,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-white shadow-sm fixed w-full z-50">
+    <nav className="bg-white shadow-sm   w-full ">
       <div className="navbar container mx-auto">
         {/* Logo */}
         <div className="navbar-start">
@@ -100,12 +100,6 @@ const Navbar = () => {
               <FaEnvelope />
             </Link>
           </div>
-
-          {/* Download Button */}
-          {/* <button className="btn btn-outline btn-sm border-purple-500 text-purple-600 hover:bg-purple-600 hover:text-white flex items-center gap-2">
-            <FiDownload />
-            Download CV
-          </button> */}
 
           {/* Mobile Dropdown */}
           <div className="dropdown dropdown-end lg:hidden">
