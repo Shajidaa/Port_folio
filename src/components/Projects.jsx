@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "../utils/animations";
 
 // --- Placeholder Project Data ---
 
@@ -40,7 +42,11 @@ const projectData = [
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative flex flex-col h-full border border-gray-100">
+    <motion.div
+      variants={fadeInUp}
+      whileHover={{ y: -10, transition: { duration: 0.3 } }}
+      className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative flex flex-col h-full border border-gray-100"
+    >
       {/* Project Image */}
       <img
         src={project.image}
@@ -80,7 +86,7 @@ const ProjectCard = ({ project }) => {
           View Details
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -90,22 +96,38 @@ const Projects = () => {
     <section id="projects" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
-        <header className="text-center mb-8 sm:mb-12 md:mb-16">
+        <motion.header
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8 sm:mb-12 md:mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full mb-6">
+            <span className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></span>
+            <span className="font-semibold text-sm text-purple-600">My Work</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-purple-400 to-purple-900 text-transparent bg-clip-text mb-3 sm:mb-4">
-            Featured Projects
+              Turning concepts into real applications
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-500 max-w-2xl mx-auto px-4">
-            Here are some of my recent projects that showcase my skills and
-            experience
+         
+These works highlight my progress in web development.
           </p>
-        </header>
+        </motion.header>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+        >
           {projectData.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

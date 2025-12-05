@@ -1,90 +1,191 @@
-import { FaTools, FaLaptopCode, FaServer } from "react-icons/fa";
+import {
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaHtml5,
+} from "react-icons/fa";
+import { SiNextdotjs, SiJavascript, SiMongodb, SiTailwindcss, SiExpress } from "react-icons/si";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "../utils/animations";
 
-const SkillBar = ({ label, value }) => (
-  <div className="mb-3 sm:mb-4">
-    <div className="flex justify-between mb-1 sm:mb-2">
-      <span className="text-xs sm:text-sm text-gray-600">{label}</span>
-      <span className="text-xs sm:text-sm font-semibold text-purple-600">{value}%</span>
-    </div>
-    <div className="w-full h-2 rounded-lg bg-gray-200">
-      <div
-        className="h-2 rounded-lg transition-all duration-500 bg-purple-600"
-        style={{ width: `${value}%` }}
-      ></div>
-    </div>
-  </div>
-);
+const skills = [
+  { 
+    name: "React.js", 
+    icon: FaReact, 
+    level: 85,
+    color: "#61DAFB",
+    bgGradient: "from-[#61DAFB]/10 to-[#61DAFB]/5"
+  },
+  { 
+    name: "JavaScript", 
+    icon: SiJavascript, 
+    level: 90,
+    color: "#F7DF1E",
+    bgGradient: "from-[#F7DF1E]/10 to-[#F7DF1E]/5"
+  },
+  { 
+    name: "Node.js", 
+    icon: FaNodeJs, 
+    level: 80,
+    color: "#339933",
+    bgGradient: "from-[#339933]/10 to-[#339933]/5"
+  },
+  { 
+    name: "MongoDB", 
+    icon: SiMongodb, 
+    level: 75,
+    color: "#47A248",
+    bgGradient: "from-[#47A248]/10 to-[#47A248]/5"
+  },
+  { 
+    name: "Next.js", 
+    icon: SiNextdotjs, 
+    level: 75,
+    color: "#000000",
+    bgGradient: "from-gray-900/10 to-gray-900/5"
+  },
+  { 
+    name: "Express.js", 
+    icon: SiExpress, 
+    level: 70,
+    color: "#000000",
+    bgGradient: "from-gray-800/10 to-gray-800/5"
+  },
+  { 
+    name: "Tailwind CSS", 
+    icon: SiTailwindcss, 
+    level: 95,
+    color: "#06B6D4",
+    bgGradient: "from-[#06B6D4]/10 to-[#06B6D4]/5"
+  },
+  { 
+    name: "HTML & CSS", 
+    icon: FaHtml5, 
+    level: 95,
+    color: "#E34F26",
+    bgGradient: "from-[#E34F26]/10 to-[#E34F26]/5"
+  },
+  { 
+    name: "Git & GitHub", 
+    icon: FaGitAlt, 
+    level: 85,
+    color: "#F05032",
+    bgGradient: "from-[#F05032]/10 to-[#F05032]/5"
+  },
+];
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
-        {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-purple-400 to-purple-900 text-transparent bg-clip-text mb-3 sm:mb-4">
-            My Skills
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg text-gray-500 max-w-2xl mx-auto px-4">
-            Here are some of the technologies and tools I work with to bring ideas to life
-          </p>
-        </div>
+    <section id="skills" className="py-12 sm:py-16">
+      <div className="container mx-auto px-4">
 
-        {/* Skills Grid Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {[
-            {
-              title: "Frontend Development",
-              icon: FaLaptopCode,
-              skills: [
-                { label: "React", value: 90 },
-                { label: "JavaScript", value: 85 },
-                { label: "HTML / CSS", value: 95 },
-                { label: "Tailwind CSS", value: 88 },
-                { label: "Next.js", value: 80 },
-              ],
-            },
-            {
-              title: "Backend Development",
-              icon: FaServer,
-              skills: [
-                { label: "Node.js", value: 85 },
-                { label: "Express.js", value: 82 },
-                { label: "MongoDB", value: 78 },
-                { label: "REST APIs", value: 88 },
-                { label: "Firebase", value: 75 },
-              ],
-            },
-            {
-              title: "Tools & Technologies",
-              icon: FaTools,
-              skills: [
-                { label: "Git & GitHub", value: 90 },
-                { label: "VS Code", value: 95 },
-                { label: "Figma", value: 70 },
-                { label: "Vite", value: 88 },
-              ],
-            },
-          ].map((category) => (
-            <div
-              key={category.title}
-              className="bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300 hover:scale-[1.02]"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div className="p-2 sm:p-3 bg-purple-100 rounded-lg">
-                  <category.icon className="text-lg sm:text-xl md:text-2xl text-purple-600" />
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full mb-6">
+            <span className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></span>
+            <span className="font-semibold text-sm text-purple-600">My Skills</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-purple-400 to-purple-900 text-transparent bg-clip-text mb-4">
+            Design, develop, deliver: my <span className="text-purple-600">essential gear</span>
+          </h2>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto"
+        >
+          {skills.map((skill, idx) => {
+            const IconComponent = skill.icon;
+            return (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
+                className="group bg-white p-6 rounded-xl border-2 border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer relative overflow-hidden"
+                style={{
+                  "--skill-color": skill.color,
+                }}
+              >
+                {/* Hover Background Effect */}
+                <div 
+                  className={`absolute inset-0 bg-gradient-to-br ${skill.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                ></div>
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      <motion.div 
+                        whileHover={{ rotate: 360, scale: 1.15 }}
+                        transition={{ duration: 0.6 }}
+                        className="w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 group-hover:from-white group-hover:to-white group-hover:shadow-lg transition-all duration-300"
+                      >
+                        <IconComponent 
+                          className="text-4xl transition-all duration-300" 
+                          style={{ color: skill.color }}
+                        />
+                      </motion.div>
+                      <div>
+                        <h3 className="font-bold text-lg text-gray-900 group-hover:font-extrabold transition-all duration-300">
+                          {skill.name}
+                        </h3>
+                        <p className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300">
+                          Proficiency
+                        </p>
+                      </div>
+                    </div>
+                    <motion.span 
+                      className="text-2xl font-bold text-purple-600 transition-all duration-300"
+                      style={{
+                        color: "var(--skill-color)"
+                      }}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      {skill.level}%
+                    </motion.span>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="w-full bg-gray-100 group-hover:bg-white rounded-full h-3 overflow-hidden shadow-inner transition-all duration-300">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                      className="h-full rounded-full transition-all duration-300"
+                      style={{
+                        background: `linear-gradient(to right, ${skill.color}, ${skill.color}dd)`
+                      }}
+                    ></motion.div>
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-purple-600">
-                  {category.title}
-                </h3>
-              </div>
-              <div className="space-y-2 sm:space-y-3">
-                {category.skills.map((skill) => (
-                  <SkillBar key={skill.label} label={skill.label} value={skill.value} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+
+                {/* Border Glow Effect on Hover */}
+                <div 
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{
+                    boxShadow: `0 0 20px ${skill.color}40`
+                  }}
+                ></div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
       </div>
     </section>
   );

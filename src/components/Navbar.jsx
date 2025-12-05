@@ -1,10 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Track active section based on scroll position
+  useEffect(() => {
+    // Only track on home page
+    if (location.pathname !== "/") return;
+
+    const sections = ["home", "about", "skills", "education", "projects", "contact"];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, [location.pathname]);
 
   const scrollToSection = (sectionId) => {
     // If not on home page, navigate to home first
@@ -15,7 +55,6 @@ const Navbar = () => {
         const element = document.getElementById(sectionId);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
-          setActiveSection(sectionId);
         }
       }, 100);
     } else {
@@ -23,7 +62,6 @@ const Navbar = () => {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
-        setActiveSection(sectionId);
       }
     }
   };
