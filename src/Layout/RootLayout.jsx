@@ -1,9 +1,9 @@
-import Home from "../Pages/Home";
+import { Outlet } from "react-router";
 
 const RootLayout = () => {
   return (
     <>
-      <Home></Home>
+      <Outlet />
     </>
   );
 };

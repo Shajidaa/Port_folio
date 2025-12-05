@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+    --color-brand-dark-bg: #101729;
+    --color-brand-card-bg: #1e293b;
+    --color-brand-purple: #9f7aea;
+    --color-brand-text: #cbd5e0;
+}

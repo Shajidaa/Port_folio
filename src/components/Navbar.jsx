@@ -1,65 +1,100 @@
-import { Link, NavLink } from "react-router";
-import { FiDownload } from "react-icons/fi";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 
 const Navbar = () => {
+  const [activeSection, setActiveSection] = useState("home");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId) => {
+    // If not on home page, navigate to home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          setActiveSection(sectionId);
+        }
+      }, 100);
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActiveSection(sectionId);
+      }
+    }
+  };
+
   const navItems = (
     <>
       <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "text-purple-500 font-semibold" : "text-gray-600"
-          }
+        <a
+          onClick={() => scrollToSection("home")}
+          className={`cursor-pointer ${
+            activeSection === "home" ? "text-purple-500 font-semibold" : "text-gray-600"
+          }`}
         >
           Home
-        </NavLink>
+        </a>
       </li>
       <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive ? "text-purple-500 font-semibold" : "text-gray-600"
-          }
+        <a
+          onClick={() => scrollToSection("about")}
+          className={`cursor-pointer ${
+            activeSection === "about" ? "text-purple-500 font-semibold" : "text-gray-600"
+          }`}
         >
           About
-        </NavLink>
+        </a>
       </li>
       <li>
-        <NavLink
-          to="/projects"
-          className={({ isActive }) =>
-            isActive ? "text-purple-500 font-semibold" : "text-gray-600"
-          }
-        >
-          Projects
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/skills"
-          className={({ isActive }) =>
-            isActive ? "text-purple-500 font-semibold" : "text-gray-600"
-          }
+        <a
+          onClick={() => scrollToSection("skills")}
+          className={`cursor-pointer ${
+            activeSection === "skills" ? "text-purple-500 font-semibold" : "text-gray-600"
+          }`}
         >
           Skills
-        </NavLink>
+        </a>
       </li>
       <li>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            isActive ? "text-purple-500 font-semibold" : "text-gray-600"
-          }
+        <a
+          onClick={() => scrollToSection("education")}
+          className={`cursor-pointer ${
+            activeSection === "education" ? "text-purple-500 font-semibold" : "text-gray-600"
+          }`}
+        >
+          Education
+        </a>
+      </li>
+      <li>
+        <a
+          onClick={() => scrollToSection("projects")}
+          className={`cursor-pointer ${
+            activeSection === "projects" ? "text-purple-500 font-semibold" : "text-gray-600"
+          }`}
+        >
+          Projects
+        </a>
+      </li>
+      <li>
+        <a
+          onClick={() => scrollToSection("contact")}
+          className={`cursor-pointer ${
+            activeSection === "contact" ? "text-purple-500 font-semibold" : "text-gray-600"
+          }`}
         >
           Contact
-        </NavLink>
+        </a>
       </li>
     </>
   );
 
   return (
-    <nav className="bg-white shadow-sm   w-full ">
+    <nav className="bg-white shadow-sm w-full sticky top-0 z-50">
       <div className="navbar container mx-auto">
         {/* Logo */}
         <div className="navbar-start">
@@ -67,40 +102,12 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-end  hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-3">{navItems}</ul>
         </div>
 
         {/* Right Side */}
-        <div className="navbar-end flex items-center gap-4">
-          {/* Social Icons */}
-          <div className="hidden md:flex gap-4 text-xl text-gray-500">
-            <Link
-              to="https://github.com/Shajidaa"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-purple-500"
-            >
-              <FaGithub />
-            </Link>
-            <Link
-              to="https://www.linkedin.com/in/shajida-akter-lopa/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-purple-500"
-            >
-              <FaLinkedin />
-            </Link>
-            <Link
-              to="mailto:shajidaislam34@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-purple-500"
-            >
-              <FaEnvelope />
-            </Link>
-          </div>
-
+        <div className="navbar-end lg:hidden flex items-center gap-4">
           {/* Mobile Dropdown */}
           <div className="dropdown dropdown-end lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost">
