@@ -25,8 +25,8 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-[60vh] py-12 sm:py-16 overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="home" className="min-h-[60vh] py-16 sm:py-20 lg:py-24 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
@@ -39,7 +39,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-4 text-black"
+              className="mb-4 text-gray-900"
             >
               Hello world! I'm
             </motion.p>
@@ -47,7 +47,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-5xl text-center md:text-7xl font-bold bg-linear-to-r from-purple-400 to-purple-900 text-transparent bg-clip-text mb-4"
+              className="text-4xl sm:text-3xl text-center lg:text-left md:text-6xl lg:text-7xl font-bold bg-linear-to-r from-purple-400 to-purple-900 text-transparent bg-clip-text mb-4 whitespace-nowrap"
             >
               Shajida Akter Lopa
             </motion.h1>
@@ -55,7 +55,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-4xl text-center md:text-6xl font-normal text-purple-300 mb-6"
+              className="text-2xl sm:text-3xl text-center lg:text-left md:text-4xl lg:text-5xl font-normal text-purple-300 mb-6 min-h-[60px] sm:min-h-[80px]"
             >
               <Typewriter
                 options={{
@@ -75,7 +75,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-base text-gray-500 md:text-lg max-w-md mx-auto lg:mx-0 mb-8"
+              className="text-base text-gray-600 md:text-lg max-w-md mx-auto lg:mx-0 mb-8"
             >
               From UI design to fully functional web components — I enjoy
               turning ideas into interactive digital experiences.
@@ -85,7 +85,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="hidden md:flex gap-4 mb-5 text-xl text-gray-500"
+              className="hidden md:flex gap-4 mb-5 text-xl text-gray-600"
             >
               <a
                 href="https://github.com/Shajidaa"

@@ -3,8 +3,17 @@ import { useEffect, useState } from "react";
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    // Check if desktop
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+
     const updateCursor = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
@@ -25,36 +34,31 @@ const CustomCursor = () => {
       setIsHovering(false);
     };
 
-    window.addEventListener("mousemove", updateCursor);
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
+    if (isDesktop) {
+      window.addEventListener("mousemove", updateCursor);
+      document.addEventListener("mouseover", handleMouseOver);
+      document.addEventListener("mouseout", handleMouseOut);
+    }
 
     return () => {
+      window.removeEventListener("resize", checkDesktop);
       window.removeEventListener("mousemove", updateCursor);
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
     };
-  }, []);
+  }, [isDesktop]);
+
+  // Only render on desktop
+  if (!isDesktop) return null;
 
   return (
-    <>
-      {/* Inner dot */}
-      <div
-        className="custom-cursor-dot"
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-        }}
-      />
-      {/* Outer ring */}
-      <div
-        className={`custom-cursor-ring ${isHovering ? "hovering" : ""}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-        }}
-      />
-    </>
+    <div
+      className={`custom-cursor-dot ${isHovering ? "hovering" : ""}`}
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+      }}
+    />
   );
 };
 

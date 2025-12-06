@@ -66,13 +66,19 @@ const Navbar = () => {
     }
   };
 
+  const handleResumeClick = () => {
+    window.open("https://drive.google.com/uc?export=download&id=19AytXCcQ9LebUKAEHFxeLbOOQy-chz85", "_blank");
+  };
+
   const navItems = (
     <>
       <li>
         <a
           onClick={() => scrollToSection("home")}
-          className={`cursor-pointer ${
-            activeSection === "home" ? "text-purple-500 font-semibold" : "text-gray-600"
+          className={`cursor-pointer transition-all ${
+            activeSection === "home" 
+              ? "bg-gradient-to-r from-purple-600 to-purple-900 text-transparent bg-clip-text font-semibold" 
+              : "text-gray-600 hover:text-purple-600"
           }`}
         >
           Home
@@ -81,8 +87,10 @@ const Navbar = () => {
       <li>
         <a
           onClick={() => scrollToSection("about")}
-          className={`cursor-pointer ${
-            activeSection === "about" ? "text-purple-500 font-semibold" : "text-gray-600"
+          className={`cursor-pointer transition-all ${
+            activeSection === "about" 
+              ? "bg-gradient-to-r from-purple-600 to-purple-900 text-transparent bg-clip-text font-semibold" 
+              : "text-gray-600 hover:text-purple-600"
           }`}
         >
           About
@@ -91,28 +99,23 @@ const Navbar = () => {
       <li>
         <a
           onClick={() => scrollToSection("skills")}
-          className={`cursor-pointer ${
-            activeSection === "skills" ? "text-purple-500 font-semibold" : "text-gray-600"
+          className={`cursor-pointer transition-all ${
+            activeSection === "skills" 
+              ? "bg-gradient-to-r from-purple-600 to-purple-900 text-transparent bg-clip-text font-semibold" 
+              : "text-gray-600 hover:text-purple-600"
           }`}
         >
           Skills
-        </a>
-      </li>
-      <li>
-        <a
-          onClick={() => scrollToSection("education")}
-          className={`cursor-pointer ${
-            activeSection === "education" ? "text-purple-500 font-semibold" : "text-gray-600"
-          }`}
-        >
-          Education
+      
         </a>
       </li>
       <li>
         <a
           onClick={() => scrollToSection("projects")}
-          className={`cursor-pointer ${
-            activeSection === "projects" ? "text-purple-500 font-semibold" : "text-gray-600"
+          className={`cursor-pointer transition-all ${
+            activeSection === "projects" 
+              ? "bg-gradient-to-r from-purple-600 to-purple-900 text-transparent bg-clip-text font-semibold" 
+              : "text-gray-600 hover:text-purple-600"
           }`}
         >
           Projects
@@ -121,8 +124,10 @@ const Navbar = () => {
       <li>
         <a
           onClick={() => scrollToSection("contact")}
-          className={`cursor-pointer ${
-            activeSection === "contact" ? "text-purple-500 font-semibold" : "text-gray-600"
+          className={`cursor-pointer transition-all ${
+            activeSection === "contact" 
+              ? "bg-gradient-to-r from-purple-600 to-purple-900 text-transparent bg-clip-text font-semibold" 
+              : "text-gray-600 hover:text-purple-600"
           }`}
         >
           Contact
@@ -133,27 +138,38 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-sm w-full sticky top-0 z-50">
-      <div className="navbar container mx-auto">
+      <div className="navbar container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Logo */}
         <div className="navbar-start">
-          <a className="text-2xl font-bold text-purple-600">Portfolio</a>
+          <button 
+            onClick={() => scrollToSection("home")}
+            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-900 text-transparent bg-clip-text cursor-pointer"
+          >
+            Portfolio
+          </button>
         </div>
 
         {/* Desktop Menu */}
-        <div className="navbar-end  hidden lg:flex">
+        <div className="navbar-end hidden lg:flex items-center gap-4">
           <ul className="menu menu-horizontal px-1 gap-3">{navItems}</ul>
+          <button
+            onClick={handleResumeClick}
+            className="btn btn-outline btn-sm border-purple-500 text-purple-600 hover:bg-purple-600 hover:text-white"
+          >
+            Resume
+          </button>
         </div>
 
-        {/* Right Side */}
-        <div className="navbar-end lg:hidden flex items-center gap-4">
+        {/* Mobile Menu */}
+        <div className="navbar-end lg:hidden flex items-center gap-2">
           {/* Mobile Dropdown */}
-          <div className="dropdown dropdown-end lg:hidden">
-            <div tabIndex={0} role="button" className="btn btn-ghost">
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-sm">
               ☰
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 shadow rounded-box w-52 mt-3"
+              className="menu menu-sm dropdown-content bg-white shadow rounded-box w-52 mt-3 p-2"
             >
               {navItems}
             </ul>

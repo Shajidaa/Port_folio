@@ -76,8 +76,8 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-12 sm:py-16">
-      <div className="container mx-auto px-4">
+    <section id="skills" className="py-16 sm:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
         {/* Header */}
         <motion.div
@@ -93,7 +93,7 @@ const Skills = () => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-purple-400 to-purple-900 text-transparent bg-clip-text mb-4">
-            Design, develop, deliver: my <span className="text-purple-600">essential gear</span>
+           The Tools I Use to Build, Design & Deliver
           </h2>
         </motion.div>
 

@@ -3,8 +3,8 @@ import { fadeInUp } from "../utils/animations";
 
 const About = () => {
   return (
-    <section id="about" className=" ">
-      <div className=" ">
+    <section id="about" className="py-16 sm:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -28,10 +28,10 @@ const About = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 shadow-lg border border-gray-200 max-w-4xl mx-auto"
+          className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 shadow-lg border border-gray-200 mx-auto"
         >
           {/* Introduction Paragraph */}
-          <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6 sm:mb-8">
             I'm Shajida Akter Lopa, a passionate <span className="font-semibold text-purple-600">MERN Stack Developer</span> who loves creating clean, functional, and user-friendly web applications. I always pay attention to the small details because I believe they make a big difference in the final product. I'm also a good listener, which helps me understand exactly what a project needs before I start building.
           </p>
 
@@ -42,7 +42,7 @@ const About = () => {
             <h3 className="text-sm font-semibold text-purple-600 mb-3 sm:mb-4">
               My Development Journey
             </h3>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
               My coding journey began at Programming Hero, where I first learned HTML and CSS. Step by step, I explored the full MERN stack—MongoDB, Express, React, and Node.js—and slowly turned my curiosity into real skills. I consider myself a slow learner, but I use that to my advantage. My patience helps me learn deeply and build things the right way.
             </p>
           </div>
@@ -54,8 +54,8 @@ const About = () => {
             <h3 className="text-sm font-semibold text-purple-600 mb-3 sm:mb-4">
               Beyond Coding
             </h3>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              Outside of coding, I enjoy painting and gardening. These hobbies keep me creative and remind me to stay patient and consistent—qualities that I also bring to my development work. Whether I'm growing a plant, finishing a painting, or polishing a piece of code, I always give my best.
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              Outside of coding, I enjoy painting and gardening. These hobbies keep me creative and remind me to stay patient and consistent—qualities that I also bring to my development work. Whether I'm growing a plant, finishing a piece of code, I always give my best.
             </p>
           </div>
 

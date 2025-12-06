@@ -93,8 +93,8 @@ const ProjectCard = ({ project }) => {
 // --- Main Projects Component ---
 const Projects = () => {
   return (
-    <section id="projects" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
+    <section id="projects" className="py-16 sm:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 30 }}
